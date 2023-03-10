@@ -22,6 +22,9 @@ class _HomeState extends State<Home> {
       }
       else{
 
+        setState(() {
+          cameraController!.startImageStream((image) => null);
+        });
         
 
       }
