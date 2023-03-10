@@ -6,7 +6,8 @@ import 'package:household_image_classification/home.dart';
 List<CameraDescription>?camera;
 
 void main() async{
-  
+  WidgetsFlutterBinding.ensureInitialized();
+  camera=await availableCameras();  
   runApp(const MyApp());
 }
 
