@@ -1,16 +1,15 @@
-# household_image_classification
+# Real Time Waste classification
 
-A new Flutter project.
 
-## Getting Started
+In this project I trained a vgg16  model on a dataset which consists of 34 classes of different types of waste objects.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+I converted the model into tf lite model and integrated it with the Flutter app
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Classification process takes place in real time using Camera controller to take pictures and provide the top most classification result in real time
+
+
+Dataset detail can be found from https://www.kaggle.com/datasets/wangziang/waste-pictures
+
+
