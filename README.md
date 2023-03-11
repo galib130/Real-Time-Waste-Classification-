@@ -1,7 +1,7 @@
 # Real-Time Waste object classification
 
 
-In this project I trained a vgg16  model on a dataset which consists of 34 classes of different types of waste objects.
+In this project I trained a vgg16  model on a dataset which consists of 33 classes of different types of waste objects.
 
 
 I converted the model into tf lite model and integrated it with the Flutter app
