@@ -1,4 +1,4 @@
-# Real Time Waste classification
+# Real-Time Waste object classification
 
 
 In this project I trained a vgg16  model on a dataset which consists of 34 classes of different types of waste objects.
