@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-      title: const Text('Everyday Object Detection') ),
+      title: const Text('Waste Classification using VGG-16') ),
       body: StreamBuilder(
         stream: cameraBloc.cameraStream,
         
