@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:household_image_classification/bloc/cameraBloc.dart';
 //import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
-import 'main.dart';
+import '../main.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class CameraHome extends StatefulWidget {
+  const CameraHome({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<CameraHome> createState() => _CameraHomeState();
 }
 
-class _HomeState extends State<Home> {
+class _CameraHomeState extends State<CameraHome> {
  
  
   String output='';
