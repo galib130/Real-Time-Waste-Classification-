@@ -13,13 +13,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  CameraImage? cameraImage;
-  CameraController? cameraController;
+  // CameraImage? cameraImage;
+  // CameraController? cameraController;
   String output='';
   final CameraBloc cameraBloc=CameraBloc();
   @override
   void initState(){
     super.initState();
+    
     //loadCamera();
     cameraBloc.eventSink.add(CameraAction.setCamera);
     loadModel();
@@ -81,13 +82,16 @@ class _HomeState extends State<Home> {
         
         builder: (context, snapshot) {
           
+           // print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
           if(snapshot.hasData){
+           // print("******************************");
             return Column(children: [
             Padding(padding: EdgeInsets.all(20),
             child: Container(height: MediaQuery.of(context).size.height*0.7,
             width: MediaQuery.of(context).size.width,
-            child: snapshot.data!.getCameraController().value.isInitialized?Container():AspectRatio(aspectRatio: snapshot.data!.getCameraController().value.aspectRatio,
-            child: CameraPreview(snapshot.data!.cameraController!),),),),
+            child: snapshot.data!.cameraController!.value.isInitialized?AspectRatio(aspectRatio: snapshot.data!.getCameraController().value.aspectRatio,
+            
+            child: CameraPreview(snapshot.data!.cameraController!),):Container(),),),
             Text(snapshot.data!.output,style: const TextStyle(fontWeight:  FontWeight.bold,fontSize:20),)
           ]);
           }

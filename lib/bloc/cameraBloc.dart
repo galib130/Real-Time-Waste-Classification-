@@ -4,6 +4,7 @@ import 'package:household_image_classification/main.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:async';
 
+
 enum CameraAction{
   setCamera
 }
@@ -39,10 +40,8 @@ class CameraModel{
 
 }
 class CameraBloc{
-  CameraImage? cameraImage;
-  CameraController? cameraController;
-  String output='';
-
+  
+ 
   final _eventStreamController=StreamController<CameraAction>();
   StreamSink<CameraAction>get eventSink=>_eventStreamController.sink;
   Stream<CameraAction> get eventStream=>_eventStreamController.stream;
@@ -54,13 +53,20 @@ class CameraBloc{
   bool get mounted => _element != null;
   CameraBloc(){
  
-
+CameraModel cameraModel=CameraModel();  
+ CameraImage? cameraImage;
+  CameraController? cameraController;
+  String output='zxzxzxzxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccc';
  eventStream.listen((event) {
-   
+   output="aaaaaaaaaaaaaaaaaaaaaaaaaaa";
       
    runModel()async{
+    
+    print("sssssssssssssssssssssssssssssssssssssssssssssssss");
     if(cameraImage!=null){
+       print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
       var predictions = await Tflite.runModelOnFrame(bytesList: cameraImage!.planes.map((plane) {
+        print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
         return plane.bytes;
       }).toList(),
       imageHeight: cameraImage!.height,
@@ -71,43 +77,55 @@ class CameraBloc{
       numResults: 2,
       threshold: 0.1,
       asynch: true);
+      print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
       predictions?.forEach((element) {
           output =element["label"];
-       
+          
+       print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
       });
     
     }
+    
   }    
   
     
 
     if(event==CameraAction.setCamera){
        print("#############################################");
+     
+
          cameraController=CameraController( camera![0], ResolutionPreset.medium);
       cameraController!.initialize().then((value){
-    if(!mounted){
-       print("************************************************");
-        return; 
-      }
-      else{
+    // if(!mounted){
+    //    print("************************************************");
+    //     return; 
+    //   }
+       
 
-        CameraModel cameraModel=CameraModel();    
+      print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      
+     
           cameraController!.startImageStream((ImageStream) {
             cameraImage=ImageStream;
-           
+               print("vvvvvvvvvvvvvvvvvvvvvvvvvvv");
+  
             runModel();
-          });
-        
-        
-      cameraModel.setCameraController(cameraController!);
-      cameraModel.setCameraImage(cameraImage!);
+             print("ggggggggggggggggggggggggggggggggggggggggg");  
+   
+        print("&&&&&&&&&&&&&&&&&&&&&&&");
+            cameraModel.setCameraController(cameraController!);
+       print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+      // cameraModel.setCameraImage(cameraImage!);
+      //  print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
       cameraModel.setOutput(output);
+       cameraSink.add(cameraModel);
+          });
       
-      cameraSink.add(cameraModel);
-      }
+     });
+        
+     
 
 
-});
  }
  
   });
