@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:household_image_classification/home.dart';
+import 'package:household_image_classification/ui/cameraPage.dart';
 
 //import 'package:tflite/tflite.dart';
 List<CameraDescription>?camera;
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const CameraHome(),
     );
   }
 }
