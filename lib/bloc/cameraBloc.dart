@@ -56,17 +56,17 @@ class CameraBloc{
 CameraModel cameraModel=CameraModel();  
  CameraImage? cameraImage;
   CameraController? cameraController;
-  String output='zxzxzxzxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccc';
+  String output='';
  eventStream.listen((event) {
-   output="aaaaaaaaaaaaaaaaaaaaaaaaaaa";
+  
       
    runModel()async{
     
-    print("sssssssssssssssssssssssssssssssssssssssssssssssss");
+   
     if(cameraImage!=null){
-       print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+      
       var predictions = await Tflite.runModelOnFrame(bytesList: cameraImage!.planes.map((plane) {
-        print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+      
         return plane.bytes;
       }).toList(),
       imageHeight: cameraImage!.height,
@@ -77,11 +77,11 @@ CameraModel cameraModel=CameraModel();
       numResults: 2,
       threshold: 0.1,
       asynch: true);
-      print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+     
       predictions?.forEach((element) {
           output =element["label"];
           
-       print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+       
       });
     
     }
@@ -91,32 +91,27 @@ CameraModel cameraModel=CameraModel();
     
 
     if(event==CameraAction.setCamera){
-       print("#############################################");
+      
      
 
          cameraController=CameraController( camera![0], ResolutionPreset.medium);
       cameraController!.initialize().then((value){
-    // if(!mounted){
-    //    print("************************************************");
-    //     return; 
-    //   }
+   
        
 
-      print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+     
       
      
           cameraController!.startImageStream((ImageStream) {
             cameraImage=ImageStream;
-               print("vvvvvvvvvvvvvvvvvvvvvvvvvvv");
+             
   
             runModel();
-             print("ggggggggggggggggggggggggggggggggggggggggg");  
+             
    
-        print("&&&&&&&&&&&&&&&&&&&&&&&");
+        
             cameraModel.setCameraController(cameraController!);
-       print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-      // cameraModel.setCameraImage(cameraImage!);
-      //  print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+      
       cameraModel.setOutput(output);
        cameraSink.add(cameraModel);
           });
@@ -131,4 +126,4 @@ CameraModel cameraModel=CameraModel();
   });
  }   
 }  
-    //final _state 
+   
